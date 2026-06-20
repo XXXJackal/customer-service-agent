@@ -126,44 +126,6 @@ python scripts/eval.py --out report.md
 
 ---
 
-## 7. 接下来可以做的事(扩展练习)
-
-- [ ] 把 Verifier 换成更小模型(7B 级),实测成本/效果
-- [ ] 给 `CodeGrader` 加 schema 校验
-- [ ] 接 OpenTelemetry,把 trajectory 推到 Langfuse / Phoenix
-- [ ] 加 `human` grader(把不确定的样本送给标注员)
-- [ ] 把 `eval.yml` 的 pass rate 阈值卡到 PR 上
-
----
-
-## 8. 发布到 GitHub
-
-```bash
-# 1. 全局替换占位符 XXXJackal 为你的 GitHub 用户名(README / pyproject / CHANGELOG)
-sed -i '' 's|XXXJackal|your-github-username|g' README.md pyproject.toml CHANGELOG.md .github/ISSUE_TEMPLATE/config.yml
-
-# 2. 在 SECURITY.md 里把 your.email@example.com 改成真实邮箱
-
-# 3. 初始化并推送
-git init
-git add .
-git commit -m "init: minimal customer-service agent for loop + harness engineering"
-gh repo create customer-service-agent --public --source=. --push
-```
-
-推送后,到 GitHub 仓库 `Settings → Secrets and variables → Actions` 加:
-
-| Secret | 必填? | 说明 |
-|---|---|---|
-| `OPENAI_API_KEY` | 是 | 评估架要用 |
-| `OPENAI_BASE_URL` | 否 | 用 DeepSeek/Qwen/Moonshot/本地 vLLM 时填 |
-| `AGENT_MODEL` / `VERIFIER_MODEL` / `JUDGE_MODEL` | 否 | 默认 `gpt-4o-mini` |
-
-然后到 `Insights → Community Standards`,你会看到这些项已经全部打钩:
-README、LICENSE、Code of Conduct、Contributing、Security policy、Issue templates、Pull request template。
-
----
-
 ## License
 
 MIT

@@ -128,46 +128,6 @@ If you only have time for three:
 
 ---
 
-## 7. Next steps (exercises)
-
-- [ ] Swap the verifier for a smaller (7B-class) model and measure the cost/quality trade-off
-- [ ] Add schema validation to `CodeGrader`
-- [ ] Wire OpenTelemetry so trajectories stream to Langfuse / Phoenix
-- [ ] Add a `human` grader that routes uncertain samples to a labeller
-- [ ] Tighten the pass-rate threshold in `eval.yml` and enforce it on PRs
-
----
-
-## 8. Publishing to GitHub
-
-```bash
-# 1. Replace XXXJackal placeholders with your GitHub username
-#    Linux:
-sed -i 's|XXXJackal|your-github-username|g' README.md README.zh-CN.md pyproject.toml CHANGELOG.md .github/ISSUE_TEMPLATE/config.yml
-#    macOS:
-sed -i '' 's|XXXJackal|your-github-username|g' README.md README.zh-CN.md pyproject.toml CHANGELOG.md .github/ISSUE_TEMPLATE/config.yml
-
-# 2. Replace your.email@example.com in SECURITY.md with a real address
-
-# 3. Initialize and push
-git init
-git add .
-git commit -m "init: minimal customer-service agent for loop + harness engineering"
-gh repo create customer-service-agent --public --source=. --push
-```
-
-After pushing, go to `Settings → Secrets and variables → Actions` on the repo and add:
-
-| Secret | Required? | Notes |
-|---|---|---|
-| `OPENAI_API_KEY` | yes | Used by the eval harness |
-| `OPENAI_BASE_URL` | no | Set when using DeepSeek / Qwen / Moonshot / local vLLM |
-| `AGENT_MODEL` / `VERIFIER_MODEL` / `JUDGE_MODEL` | no | Default is `gpt-4o-mini` |
-
-Then visit `Insights → Community Standards` — every item should already be checked: README, LICENSE, Code of Conduct, Contributing, Security policy, Issue templates, Pull request template.
-
----
-
 ## License
 
 MIT
