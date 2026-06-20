@@ -1,0 +1,32 @@
+[
+  {
+    "id": "FAQ-001",
+    "question": "How do I track my order?",
+    "answer": "You can track an order by giving us the order id (starts with 'A'). We'll look it up and share the carrier and tracking number."
+  },
+  {
+    "id": "FAQ-002",
+    "question": "How long does delivery take?",
+    "answer": "Standard delivery takes 3-5 business days. Express delivery takes 1-2 business days within mainland China."
+  },
+  {
+    "id": "FAQ-003",
+    "question": "What payment methods do you accept?",
+    "answer": "We accept Alipay, WeChat Pay, all major credit cards, and Apple Pay."
+  },
+  {
+    "id": "FAQ-004",
+    "question": "Can I change my shipping address after ordering?",
+    "answer": "Address changes are possible if the order is still in 'processing'. Once it has shipped, you'll need to contact the carrier directly."
+  },
+  {
+    "id": "FAQ-005",
+    "question": "Do you ship internationally?",
+    "answer": "Yes, we ship to over 40 countries. International orders typically take 7-14 business days."
+  },
+  {
+    "id": "FAQ-006",
+    "question": "How do I cancel my order?",
+    "answer": "Orders can be cancelled free of charge while still in 'processing' status. Once shipped, follow the return process instead."
+  }
+]

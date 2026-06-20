@@ -1,0 +1,7 @@
+{
+  "faithful":   "The reply only uses facts that appear in the tool results. No invented order ids, tracking numbers, or policy details.",
+  "polite":     "Tone is courteous and professional throughout. No blame or condescension.",
+  "concise":    "Reply is at most ~3 short sentences. Leads with the answer.",
+  "actionable": "The reply tells the customer the next concrete step they can take.",
+  "empathetic": "Acknowledges the customer's frustration before resolving."
+}

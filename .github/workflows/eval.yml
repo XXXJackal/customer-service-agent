@@ -1,0 +1,52 @@
+name: eval-gate
+
+on:
+  pull_request:
+    paths:
+      - "src/**"
+      - "eval/**"
+      - "scripts/eval.py"
+      - ".github/workflows/eval.yml"
+  workflow_dispatch:
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt pytest
+      - run: pytest -q
+
+  # ---------------------------------------------------------------
+  # The Harness Engineering "evaluation gate":
+  # this job runs the full eval on every PR and blocks merge if the
+  # overall pass rate falls below the threshold.
+  # ---------------------------------------------------------------
+  harness:
+    runs-on: ubuntu-latest
+    needs: unit-tests
+    if: ${{ secrets.OPENAI_API_KEY != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Run harness
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+          AGENT_MODEL: ${{ secrets.AGENT_MODEL || 'gpt-4o-mini' }}
+          VERIFIER_MODEL: ${{ secrets.VERIFIER_MODEL || 'gpt-4o-mini' }}
+          JUDGE_MODEL: ${{ secrets.JUDGE_MODEL || 'gpt-4o-mini' }}
+        run: python scripts/eval.py --out report.md --threshold 0.80
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eval-report
+          path: |
+            report.md
+            trajectories/

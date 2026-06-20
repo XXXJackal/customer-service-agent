@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or discussion
+    url: https://github.com/XXXJackal/customer-service-agent/discussions
+    about: For general questions about Loop Engineering and Harness Engineering patterns, please open a Discussion.

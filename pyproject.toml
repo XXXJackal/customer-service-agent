@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "customer-service-agent"
+version = "0.2.0"
+description = "Minimal production-style customer-service agent for learning Loop Engineering and Harness Engineering."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "XXXJackal", email = "libanbao@gmail.com" }]
+keywords = ["llm", "agent", "loop-engineering", "harness-engineering", "evaluation", "customer-service"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "openai>=1.40.0",
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.5.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "ruff>=0.5.0"]
+
+[project.urls]
+Homepage = "https://github.com/XXXJackal/customer-service-agent"
+Issues = "https://github.com/XXXJackal/customer-service-agent/issues"
+Changelog = "https://github.com/XXXJackal/customer-service-agent/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+# -----------------------------------------------------------------------------
+# Ruff — fast Python linter. Config is intentionally light.
+# -----------------------------------------------------------------------------
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "E", "F", "W",  # pycodestyle + pyflakes
+    "I",            # isort
+    "B",            # flake8-bugbear
+    "UP",           # pyupgrade
+]
+ignore = [
+    "E501",  # line too long — comments and prompts are wider on purpose
+    "B008",  # do not perform function call in argument defaults (LLMClient default)
+]
+
+# scripts/ legitimately does sys.path.insert(...) before its project imports
+# so the repo can be run without `pip install -e .`. Allow E402 there only.
+[tool.ruff.lint.per-file-ignores]
+"scripts/*.py" = ["E402"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
