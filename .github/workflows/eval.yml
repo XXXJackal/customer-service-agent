@@ -43,7 +43,7 @@ jobs:
           VERIFIER_MODEL: ${{ secrets.VERIFIER_MODEL || 'gpt-4o-mini' }}
           JUDGE_MODEL: ${{ secrets.JUDGE_MODEL || 'gpt-4o-mini' }}
         run: python scripts/eval.py --out report.md --threshold 0.80
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: eval-report
